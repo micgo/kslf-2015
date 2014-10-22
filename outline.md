@@ -23,6 +23,7 @@ Use knife-ec2 or chef-metal to launch a server.
 
 * Awesome appliance repair
 * Simple cluster with webservers and a load balancer
+* update ssh policy or httpd port
 
 ### Who are you?
 
@@ -30,6 +31,7 @@ Use knife-ec2 or chef-metal to launch a server.
 * Developer?
   * Ruby developer?
 * DevOp?
+* Business person?
 
 ### Who are you?
 
