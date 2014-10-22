@@ -7,3 +7,13 @@ It’s time for you to fully automate the provisioning and management of your in
 Disposable infrastructure whose provisioning, configuration, and on-going maintenance is fully automated allow you to change the way you build and deliver applications. Move your applications and infrastructure towards continuous delivery.
 
 In this talk, we’ll explore the ideas behind “infrastructure as code” and, specifically, look at how Chef allows you to fully automate your infrastructure. If you’re brave enough, we’ll even let you get your hands on some Chef and experience the delight of using Chef to build and deploy some infrastructure components.
+
+## License & Authors
+
+Author:: Nathen Harvey (<nharvey@getchef.com>)
+
+
+Copyright:: 2014 Chef Software, Inc.
+
+This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
+ 
