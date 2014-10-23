@@ -208,6 +208,49 @@ Policy is defined as a collection of **resources** in **recipes**.  There are lo
   * Yes – Do nothing
   * No – Bring the resource into the desired state (repair)
 
+### Built-in Resources
+
+* package
+* template
+* service
+* cron
+* directory
+* mount
+* user
+* group
+* registry_key
+* remote_directory
+* route
+* and many more...
+* [docs.getchef.com/chef/resources.html
+](http://docs.getchef.com/chef/resources.html
+)
+
+
+### Recipes
+
+Policy is defined as a collection of **resources** in **recipes**.  There are lots of abstractions on top of this but *resources* are the basic building blocks.
+
+### Sample Recipe
+
+      package "httpd"
+
+      template "/etc/httpd/conf/httpd.conf" do
+        source "httpd.conf.erb"
+        owner  "root"
+        group  "root"
+        mode   "0644"
+        notifies :restart, "service[httpd]"
+      end
+
+      service "httpd" do
+        action [:start, :enable]
+      end
+
+      file "/var/www/html/index.html" do
+        content "Hello, ATO!"
+      end
+
 ### Workflow
 
 What does a test-driven infrastructure workflow look like?
