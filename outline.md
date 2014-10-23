@@ -115,11 +115,102 @@ Use knife-ec2 or chef-metal to launch a server.
 
 ### Desired Configuration
 
-### Recipes
+A section that describes the proces the node goes through to converge on the desired configuration.
 
 ### Search
 
+The server holds both policy and **state** of the infrastructure.  Show a demonstration of how the state of the infrastructure can help drive search.
+
+# Building your policy
+
+Policy is defined as a collection of **resources** in **recipes**.  There are lots of abstractions on top of this but *resources* are the basic building blocks.
+
+### Resources
+* Piece of the system and its desired state
+  * Package that should be installed
+  * Service that should be running
+  * File that should be generated
+  * Cron job that should be configured
+  * User that should be managed
+  * And more
+* docs.getchef.com/chef/resources.html
+
+### Hello, Chef!
+
+* **Open in editor** `~/hello_chef.rb`
+
+      file "/tmp/hello_chef.txt" do
+        content "Hello, Chef"
+        mode "0777"
+      end
+
+### Apply the policy
+
+      $ sudo chef-apply hello_chef.rb
+
+      Recipe: (chef-apply cookbook)::(chef-apply recipe)
+        * file[/tmp/hello_chef.txt] action create
+          - create new file /tmp/hello_chef.txt
+          - update content in file /tmp/hello_chef.txt from none to 79c290
+          --- /tmp/hello_chef.txt     2014-10-22 19:59:04.000000000 -0400
+          +++ /tmp/.hello_chef.txt20141022-23075-19aelx1      2014-10-22 19:59:04.000000000 -0400
+          @@ -1 +1,2 @@
+          +Hello, Chef
+          - change mode from '' to '0777'
+
+### Resources
+
+* Describe the desired state
+* Do not need to tell Chef how to get there
+
+* What happens when you re-apply the policy?
+
+### Apply the policy
+
+      $ sudo chef-apply hello_chef.rb
+
+      Recipe: (chef-apply cookbook)::(chef-apply recipe)
+        * file[/tmp/hello_chef.txt] action create (up to date)
+
+### Resources
+
+* A piece of the system
+* Its desired state
+
+
+      file "/tmp/hello_chef.txt" do
+        content "Hello, Chef"
+        mode "0777"
+      end
+
+### Change the state of the system
+
+      $ echo “Hello, #ato2014” > /tmp/hello_chef.txt
+
+### Apply the policy
+
+      $ sudo chef-apply hello_chef.rb
+
+      Recipe: (chef-apply cookbook)::(chef-apply recipe)
+        * file[/tmp/hello_chef.txt] action create
+          - update content in file /tmp/hello_chef.txt from e453df to 79c290
+          --- /tmp/hello_chef.txt     2014-10-22 20:00:20.000000000 -0400
+          +++ /tmp/.hello_chef.txt20141022-23340-17a7m5t      2014-10-22 20:00:50.000000000 -0400
+          @@ -1,2 +1,2 @@
+          -“Hello, #ato2014”
+          +Hello, Chef
+
+### Resources – Test and Repair
+
+* Resources use a test and repair model
+
+* Resource currently in the desired state?
+  * Yes – Do nothing
+  * No – Bring the resource into the desired state (repair)
+
 ### Workflow
+
+What does a test-driven infrastructure workflow look like?
 
 # Hands-on
 
