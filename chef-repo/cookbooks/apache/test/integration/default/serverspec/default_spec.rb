@@ -1,7 +1,7 @@
 require 'serverspec'
 set :backend, :exec
 
-describe "apahce" do
+describe "apache" do
   it "has httpd package installed" do
     expect(package('httpd')).to be_installed
   end
@@ -14,11 +14,11 @@ describe "apahce" do
     expect(service('httpd')).to be_enabled
   end
 
-  it "is listening on port 80" do
-    expect(port(80)).to be_listening
+  it "is listening on port 81" do
+    expect(port(81)).to be_listening
   end
 
   it "displays our home page" do
-    expect(command("curl http://localhost").stdout).to match /ATO/
+    expect(command("curl http://localhost:81").stdout).to match /ATO/
   end
 end
