@@ -6,6 +6,14 @@
 
 package "httpd"
 
+template "/etc/httpd/conf/httpd.conf" do
+  source "httpd.conf"
+  owner  "root"
+  group  "root"
+  mode   "0644"
+  notifies :reload, "service[httpd]"
+end
+
 service "httpd" do
   action [:start, :enable]
 end
