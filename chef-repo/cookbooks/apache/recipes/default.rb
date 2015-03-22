@@ -6,7 +6,7 @@
 
 package "httpd"
 
-my_port = 81
+my_port = 80
 
 template "/etc/httpd/conf/httpd.conf" do
   source "httpd.conf.erb"
@@ -24,5 +24,5 @@ service "httpd" do
 end
 
 file "/var/www/html/index.html" do
-  content "Hello, ATO!"
+  content "Hello, Kansas LinuxFest!"
 end
